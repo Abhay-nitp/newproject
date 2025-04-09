@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Login</title>
+  <title>Register</title>
   <style>
     body { font-family: sans-serif; text-align: center; padding: 50px; }
     input { padding: 10px; margin: 5px; width: 250px; }
@@ -10,26 +10,26 @@
   </style>
 </head>
 <body>
-  <h2>Login</h2>
+  <h2>Register</h2>
   <input type="email" id="email" placeholder="Email" /><br/>
   <input type="password" id="password" placeholder="Password" /><br/>
-  <button onclick="login()">Login</button><br/>
+  <button onclick="register()">Register</button><br/>
   <p id="error" style="color:red;"></p>
-  <p>Don't have an account? <a href="register.html">Register</a></p>
+  <p>Already have an account? <a href="index.html">Login</a></p>
 
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
   <script src="firebase-config.js"></script>
   <script>
-    function login() {
+    function register() {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
-      auth.signInWithEmailAndPassword(email, password)
+      auth.createUserWithEmailAndPassword(email, password)
         .then(() => {
-          alert("Login successful!");
-          window.location.href = "index2.html"; // or wherever
+          alert("Registration successful! Please login.");
+          window.location.href = "index.html";
         })
         .catch(err => {
           document.getElementById("error").innerText = err.message;
